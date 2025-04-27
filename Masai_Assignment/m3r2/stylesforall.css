@@ -1,0 +1,42 @@
+
+body {
+    font-size: small;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #d4d4db;
+  }
+
+  table{
+    background-color: rgb(228, 223, 217);
+}
+input{
+    background-color: rgb(130, 158, 64);
+}
+img:hover{
+    background-color: rgb(19, 151, 48);
+}
+table:hover{
+    color:rgb(212, 104, 16)
+}
+header::after{
+    font-size: xx-large;
+}
+
+table.hover{
+    background-color: blueviolet;
+}
+.he{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+table{
+    border: 2px solid;
+    /* width:80%;
+    height: 8; */
+    display: inline-block;
+}
+section{
+    border: 2px solid;
+    width:80%;
+    height: 80%;
+    display: inline-block;
+
+}
