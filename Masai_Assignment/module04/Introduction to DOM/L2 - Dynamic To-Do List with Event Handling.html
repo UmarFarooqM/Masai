@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="todoinput" placeholder="addtask">
+    <button onclick="addtask()">add the task</button>
+    <button onclick="clearAll()"> clearall</button>
+    <ul id="todolist"></ul>
+</body>
+</html>
+<script>
+    function addtask(){
+        let todoinput = document.getElementById("todoinput").value 
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || []
+        tasks.push(todoinput)
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+        displayData();
+    }
+    
+    function  displayData(){
+        let tasks = JSON.parse(localStorage.getItem('tasks'))
+        let todolist = document.getElementById("todolist")
+        todolist.innerHTML =""
+        tasks.forEach((ele)=>{
+            let li = document.createElement("li")
+            li.innerText = ele
+            todolist.appendChild(li)
+        })
+    }
+
+    function clearAll(){
+        localStorage.removeItem("tasks")
+        displayData()
+    }
+    // addtask()
+    displayData()
+
+
+</script>

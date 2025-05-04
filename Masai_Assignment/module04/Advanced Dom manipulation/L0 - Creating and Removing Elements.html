@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+    <div id="container"></div>
+
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li id="item-to-remove">Item 3</li>
+      </ul>
+</body>
+</html>
+<script>
+  const container = document.getElementById('container');
+
+
+  const newParagraph = document.createElement('p');
+
+
+  newParagraph.textContent = "This is a dynamically created paragraph.";
+
+ 
+  container.appendChild(newParagraph);
+
+  const list = document.getElementById('list');
+    const itemToRemove = document.getElementById('item-to-remove');
+  
+    list.removeChild(itemToRemove);
+</script>
+
+
+  
+  
+  

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+    <h1 id="dom">This is normal heading</h1>
+    <p>this text is going</p>
+    <p>Rohit</p>
+    <p>to change by</p>
+    <p>Hitman</p>
+    <p>dom manipulation</p>
+  </div>
+
+ 
+</body>
+</html>
+<script>
+
+    let hh = document.getElementById("dom");
+    hh.innerText = "Welcome to the DOM World!";
+ 
+    let para = document.getElementsByTagName("p");
+    for (let i = 0; i < para.length; i++) {
+      para[i].style.color = "blue";
+    }
+
+
+    let divi = document.querySelector("#container");
+    divi.style.backgroundColor = "yellow"; 
+
+  </script>
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1 id="dom">
+            This is normal heading
+        </h1>
+        <p>
+            this text is going  
+        </p>
+        <p>Rohit</p>
+        <p>
+            to change by
+        </p>
+        <p>Rohit</p>
+        <p>dom manupulation</p>
+    </div>
+</body>
+</html>
+<script>
+
+    let hh = document.getElementById("dom")
+    hh.innerText = "Welcome to the DOM World!"
+ 
+
+    para= document.getElementsByTagName("p")
+    para.style.color = "blue"
+
+    div = document.querySelector("container")
+    div.style.backgroundcolor = "yellow"
+</script> -->

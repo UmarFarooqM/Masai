@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="color" placeholder="colorname">
+    <button onclick="changecolor()"> change color</button>
+
+    <input type="text" id="updtext" placeholder="updatetext">
+    <button onclick="updatetext()">  updatetext</button>
+    <div id="divi">
+        <p> this is colorchange</p>
+    </div>
+
+</body>
+</html>
+<script>
+
+// let div = document.getElementById("divi")
+// console.log(div)
+
+    function changecolor(){
+        let input = document.getElementById("color").value 
+        let div = document.getElementById("divi")
+        
+        div.style.backgroundColor= input
+    }
+    onclick()
+
+    function updatetext(){
+        let give = document.getElementById("updtext").value
+
+        let div = document.getElementById("divi")
+
+        div.innerText = give
+    }
+    updatetext()
+</script>
