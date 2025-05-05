@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+            /* @media (width <= 1250p ) {
+                background-color= "lightyellow" ;
+    } */
+       
+        div#box{
+        display : grid;
+        justify-content: center;
+        /* gap : 10px 20px; */
+        
+        margin: auto;
+        
+        
+        grid-template-areas: "q1 q2 q3"
+                             "q4 q5 q6" ;
+    }
+    div#box> :nth-of-type(1){
+        /* background-color: red; */
+        grid-area: q1;
+    }
+    div#box> :nth-of-type(2){
+        /* background-color: rgb(51, 255, 0); */
+        grid-area: q2;
+    }div#box> :nth-of-type(3){
+        /* background-color: rgb(132, 0, 255); */
+        grid-area: q3;
+    }div#box> :nth-of-type(4){
+        /* background-color: rgb(208, 255, 0); */
+        grid-area: q4;
+    }
+    div#box> :nth-of-type(5){
+        /* background-color: rgb(38, 0, 255); */
+        grid-area: q5;
+    }
+    div#box> :nth-of-type(6){
+        /* background-color: rgb(255, 0, 140); */
+        grid-area: q6;
+    }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>Gallery of the Destination </h1>
+    </header>
+    <main>
+        <div id="box">
+            <div><img src= "https://www.stayvista.com/blog/wp-content/uploads/2023/11/nature-photographer-29ezCWtMtnM-unsplash-1-scaled-1.jpg" width="50%" alt="tajmahal"> <h1>Kerala</h1></div>
+            <div><img src="https://media.easemytrip.com/media/Blog/India/637317253323603095/637317253323603095qGph8j.png" width="50%" alt=""> <h1>Desert</h1></div>
+            <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Charminar_Hyderabad_1.jpg/250px-Charminar_Hyderabad_1.jpg"  width="50%"alt="charminar"> <h1>Charminar-HYD</h1></div>
+            <div><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/d2/2f/7a/palace-from-the-outside.jpg?w=1200&h=-1&s=1" width="50%"alt=""> <h1> Mysore palace</h1></div>
+            <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcYliqlanVo_4bnLaU97StOlcZEqJ0UnDqtg&s" alt="golden temple" width="50%"> <h1>Golden Temple</h1></div>
+            <div><img src="https://travelogyindia.b-cdn.net/blog/wp-content/uploads/2014/02/delhi.jpg" width="50%" alt="delhifort">  <h1>Delhifort </h1></div>
+        </div>
+    </main>
+</body>
+</html>
