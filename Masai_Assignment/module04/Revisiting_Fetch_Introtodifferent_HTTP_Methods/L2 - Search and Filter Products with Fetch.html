@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="filteringbycategory()">
+    <select name="" id="categoryfiltering" onchange="filteringbycategory()">
+        <option value="all">All</option>
+        <option value="Mens Cotton Jacket">electronics</option>
+        <option value="names">names</option>
+    </select>
+    <div id="productcontainer"></div>
+</body>
+</html>
+
+<script>
+async function filteringbycategory(){
+
+
+
+try{
+    // button.disabled = true;
+    let res = await fetch("https://fakestoreapi.com/products")
+    let products = await res.json();
+
+    console.log(products)
+    let selectcategory= document.getElementById("categoryfiltering")
+
+    let filterproducts = selectcategory=="all" ? products : products.filter((product)=> product.category==selectcategory)
+
+    let container = document.getElementById("productcontainer")
+
+    container.innerHTML =""
+
+    filterproducts.forEach((ele)=>{
+       
+        let productBox = document.createElement("div");
+
+        productBox.innerHTML= `
+            <h4>${ele.title}</h4>
+<img src="${ele.image}" alt="">
+<p>${ele.price}</p>
+          
+`
+container.appendChild(productBox)
+    })
+  
+    
+
+}
+catch(err){
+    alert("Failed to fetch products. Please try again later")
+
+
+}
+
+}
+
+</script>

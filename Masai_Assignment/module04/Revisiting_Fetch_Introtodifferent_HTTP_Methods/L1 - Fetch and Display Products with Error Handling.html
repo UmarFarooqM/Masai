@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  #container{
+    display : grid;
+    grid-template-columns: repeat(3,1fr);
+    gap : 10px;
+    background-color: rgb(207, 214, 195);
+  }
+  #container>div{
+    border:1px solid black;
+    text-align: center;
+
+  }
+  img{
+    max-width: 100%;
+  }
+
+</style>
+<body onload="fetchproducts()">
+    <button id ="btn" onclick="fetchproducts"> filterding</button>
+    <div id="container"></div>
+    
+
+</body>
+</html>
+
+<script>
+async function fetchproducts(){
+
+    let button = document.getElementById("btn")
+
+    try{
+        button.disabled = true;
+        let res = await fetch("https://fakestoreapi.com/products")
+        let products = await res.json();
+
+        console.log(products)
+        let container= document.getElementById("container")
+        products.forEach((ele)=>{
+            let productBox = document.createElement("div");
+
+            productBox.innerHTML= `
+                <h4>${ele.title}</h4>
+    <img src="${ele.image}" alt="">
+    <p>${ele.price}</p>
+              
+    `
+    container.appendChild(productBox)
+        })
+
+    }
+    catch(err){
+        alert("Failed to fetch products. Please try again later")
+
+
+    }
+    finally{
+        button.disable = false
+    }
+}
+
+</script>

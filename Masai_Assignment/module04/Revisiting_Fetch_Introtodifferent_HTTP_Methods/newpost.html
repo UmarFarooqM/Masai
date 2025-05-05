@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="some"></div>
+</body>
+</html>
+
+<script>
+
+    async function newpost(){
+        try{
+            let res = await fetch("https://jsonplaceholder.typicode.com/posts")
+            let data = await res.json();
+            console.log(data)
+
+            let newdiv = document.createElement("newdiv")
+           
+        let some = document.getElementById("some")
+            let fil= data.filter((ele)=>ele.userId == 1)
+            console.log(fil)
+            div.innerHtml =""
+            fil.forEach((ele)=>{
+                let prod = document.createElement("divi")
+                prod.innerHtml = ` is this filet ${ele.title}  is the ${ele.userId} id is ${ele.id}`
+                div.appendChild(prod)
+                some.appendChild(prod)
+                newdiv.appendChild(prod)
+                // console.log(newdiv)
+                
+            })
+            // div.appendChild(data)
+        }
+        catch(err){
+            console.log(err)
+        }
+
+    }
+    newpost()
+</script>
