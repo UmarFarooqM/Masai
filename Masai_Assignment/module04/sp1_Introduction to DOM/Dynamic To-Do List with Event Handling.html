@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text"  id="input" placeholder="typetask" >
+    <!-- <button id ="bt" onclick="addTask()">Addtask</button> -->
+
+    <button id ="bt" >Addtask</button>
+    <button id ="del" >Delete</button>
+    <!-- <button id ="del" onclick="removetask()">Delete</button> -->
+    <ul id ="ull"></ul>
+   
+
+</body>
+</html>
+<script>
+    
+
+
+    let btn = document.getElementById("bt")
+    let input = document.getElementById("input").value =""
+
+    btn.addEventListener('click', ()=>{
+        let input = document.getElementById("input").value 
+        let ul = document.getElementById("ull")
+        let li = document.createElement("li")
+        li.innerText = input
+        ul.appendChild(li)
+    })
+    let del = document.getElementById("del")
+    del.addEventListener("click", ()=>{
+        let ul = document.getElementById("ull")
+        ul.innerHTML=""
+    })
+    
+    // function addTask(){
+    //     let input = document.getElementById("input").value
+    //     let btn = document.getElementById("btn")
+    //     let li = document.createElement("li")
+    //     let ul = document.getElementById("ull")
+    //     if(input!=="" || input!==" "){
+    //         li.innerText= input
+    //     ul.appendChild(li)
+    //     }   
+    // }
+
+    // function removetask(){
+    //     let ul= document.getElementById("ull")
+    //     ul.innerHTML=""
+    // }
+
+    
+    
+
+
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+  <ul id ="un">
+    <li>This is line1</li>
+    <li>This is 2</li>
+    <li><b>This</b >is 3</li>
+  </ul>  
+
+  <!-- <li></li> -->
+
+</body>
+</html>
+
+
+<script>
+
+    // let unorderlist = document.querySelector("ul")
+
+    let unorderlist = document.querySelectorAll("li")
+
+    unorderlist.forEach((ele,ind)=>{
+      let li = document.querySelectorAll("li")
+      if(ind%2==0){
+        ele.style.backgroundColor = "blue"
+        // ele = `  <li> <b>${ele}</b></li>`
+      }
+      else{
+        ele.style.backgroundColor = "red"
+      }
+    })
+
+
+
+    // unorderlist.innerText = "New Item"
+
+
+    
+
+</script>
