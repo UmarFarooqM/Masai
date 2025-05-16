@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            max-width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+
+            /* border: 2px solid black; */
+        }
+        #container>div{
+            flex-wrap: wrap-reverse;
+            align-items: center;
+            justify-items: center;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dotted rgb(204, 0, 255);
+        }
+        #container>div>img{
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body onload="memes()">
+    
+  
+    <input type="text" id="search" placeholder="meme name">
+    <button id="search" onclick="memes()"> <search>search</button>
+    <button id="btn" onclick="memes()">memes</button>
+    <button id="sort">sort</button>
+    <div id="container"></div>
+    
+
+</body>
+</html>
+
+<script>
+
+    async function memes(){
+        try {
+            let res = await fetch("https://api.imgflip.com/get_memes");
+            let da = await res.json();
+            // console.log(da)
+        //   console.log(da.data.memes)
+        let products = da.data.memes;
+    console.log(products)
+
+            let container = document.getElementById("container")
+            let ip = document.getElementById("search")
+            let search = document.getElementById("search").value
+
+          let filter=  products.filter((ele)=> ele.name ==search)
+        
+          let sort = document.getElementById("sort")
+       let s= products.sort((a,b)=> a.width-b.width)
+          sort.addEventListener('click', ()=> 
+          
+          s.forEach((ele)=>{
+            let div = document.createElement("div")
+                    div.innerHTML =""
+                    div.innerHTML=`<h1>${ele.name}</h1>
+                                    <img src="${ele.url}" alt="">`
+                    container.appendChild(div)
+          })
+         
+        )
+          
+        //   sorted.forEach((ele)=>{
+        //     let div = document.createElement("div")
+
+        //             div.innerHTML =""
+        //             div.innerHTML=`<h1>${ele.name}</h1>
+        //                             <img src="${ele.url}" alt="">`
+
+                    
+        //             container.appendChild(div)
+        //   })
+
+        //  let s= products.sort((a,b)=>a.name.localeComapare(b.name))
+          filter.forEach((ele)=>{
+            container.innerHTML=""
+                    let div = document.createElement("div")
+
+                    div.innerHTML =""
+                    div.innerHTML=`<h1>${ele.name}</h1>
+                                    <img src="${ele.url}" alt="">`
+
+                    
+                    container.appendChild(div)
+            })
+
+
+
+            
+
+            // products.forEach((ele)=>{
+            //         let div = document.createElement("div")
+
+            //         div.innerHTML =""
+            //         div.innerHTML=`<h1>${ele.name}</h1>
+            //                         <img src="${ele.url}" alt="">`
+
+            //         container.appendChild(div)
+            // })
+            // .sort((a,b)=>a.name-name.b)
+
+
+            } catch (error) {
+            console.log(error)
+        }
+    
+    
+    }
+
+
+</script>

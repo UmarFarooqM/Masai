@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            background-color: lightgray;
+        }
+        #container{
+            font-family: 'Courier New', Courier, monospace;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+            /* border: 2px solid rgb(177, 130, 238); */
+        }
+        #container>div{
+            border: 2px solid black;
+            align-items: center;
+        }
+    </style>
+</head>
+<body  >
+    
+<button id="btn" onclick="display()">display</button>
+<div id="container"></div>
+
+</body>
+</html>
+
+<script>
+
+    var products = [
+  { id: 1, name: "Product A", price: 50, inStock: true },
+  { id: 2, name: "Product B", price: 30, inStock: false },
+  { id: 3, name: "Product C", price: 70, inStock: true },
+  { id: 4, name: "Product D", price: 20, inStock: false }
+];
+
+function display(){
+
+        let btn = document.getElementById("btn")
+
+        let cont = document.getElementById("container")
+
+        products.forEach((ele)=>{
+            let div = document.createElement('div')
+
+            div.innerHTML=""
+            div.innerHTML = ` <h1>${ele.name}</h1>
+                                <p>Rs.${ele.price}</p> stack: ${ele.inStock}`
+            if(ele.inStock==true){
+                div.style.backgroundColor="green";
+            }
+            else{
+                div.style.backgroundColor = "red";
+            }
+
+        cont.appendChild(div)
+        })
+
+}
+
+</script>
