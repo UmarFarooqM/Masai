@@ -38,10 +38,15 @@
 <body onload="memes()">
     
   
-    <input type="text" id="search" placeholder="meme name">
-    <button id="search" onclick="memes()"> <search>search</button>
-    <button id="btn" onclick="memes()">memes</button>
-    <button id="sort">sort</button>
+    <input type="text" id="ipsearch" placeholder="meme name">
+    <button id="btnsearch" > <search>search</button>
+    <button id="btnmemes" >memes</button>
+    <button id="btnsort">sort</button>
+     <br>
+    <hr>
+   
+    <br>
+    
     <div id="container"></div>
     
 
@@ -57,70 +62,77 @@
             // console.log(da)
         //   console.log(da.data.memes)
         let products = da.data.memes;
-    console.log(products)
-
+    // console.log(products)
             let container = document.getElementById("container")
-            let ip = document.getElementById("search")
-            let search = document.getElementById("search").value
+            let ipsearch = document.getElementById("ipsearch").value.trim()
+            let btnsearch = document.getElementById("btnsearch")
+            // console.log(ipsearch==products[1].name)
 
-          let filter=  products.filter((ele)=> ele.name ==search)
-        
-          let sort = document.getElementById("sort")
-       let s= products.sort((a,b)=> a.width-b.width)
-          sort.addEventListener('click', ()=> 
-          
-          s.forEach((ele)=>{
-            let div = document.createElement("div")
-                    div.innerHTML =""
-                    div.innerHTML=`<h1>${ele.name}</h1>
-                                    <img src="${ele.url}" alt="">`
-                    container.appendChild(div)
-          })
-         
-        )
-          
-        //   sorted.forEach((ele)=>{
-        //     let div = document.createElement("div")
+            let sortbtn = document.getElementById("btnsort")
+            let allmemesbtn  = document.getElementById("btnmemes")
 
-        //             div.innerHTML =""
-        //             div.innerHTML=`<h1>${ele.name}</h1>
-        //                             <img src="${ele.url}" alt="">`
-
-                    
-        //             container.appendChild(div)
-        //   })
-
-        //  let s= products.sort((a,b)=>a.name.localeComapare(b.name))
-          filter.forEach((ele)=>{
-            container.innerHTML=""
+            btnsearch.addEventListener('click',()=>{
+                 let ipsearch = document.getElementById("ipsearch").value.trim()
+                let searcharr= products.filter((ele)=> ele.name ===  ipsearch)
+                console.log(searcharr)
+                container.innerHTML=""     
+                searcharr.forEach((ele)=>{
                     let div = document.createElement("div")
-
-                    div.innerHTML =""
-                    div.innerHTML=`<h1>${ele.name}</h1>
+                    div.innerHTML=""
+                    div.innerHTML =`<h1>${ele.name}</h1>
                                     <img src="${ele.url}" alt="">`
-
-                    
                     container.appendChild(div)
+                })
+            })
+            
+            // container.innerHTML=""
+            allmemesbtn.addEventListener('click',()=>{
+                container.innerHTML=""
+                // console.log(products)
+                products.forEach((ele)=>{
+                    let div = document.createElement("div")
+                    div.innerHTML = ""
+                div.innerHTML = `<h1>${ele.name}</h1>
+                                    <img src="${ele.url}" alt="">`
+                    container.appendChild(div)
+                })
             })
 
 
+            sortbtn.addEventListener('click',()=>{
+                let sortarr = products.sort((a,b)=>{
+                    return a.name.localeCompare(b.name)
+                })
+                // console.log(sortarr)
+               container.innerHTML=""
+                sortarr.forEach((ele)=>{
+                    let div = document.createElement("div")
+                    div.innerHTML =""
+                    div.innerHTML = `<h1>${ele.name}</h1>
+                                    <img src="${ele.url}" alt="">` 
+                    container.appendChild(div)
+                })     
+            })
 
-            
 
-            // products.forEach((ele)=>{
+            // sortbtn.addEventListener('click',()=>{
+            //     let sortarr = products.sort((a,b)=>{
+            //         return a.width-b.width
+            //     })
+            //     // console.log(sortarr)
+            //    container.innerHTML=""
+            //     sortarr.forEach((ele)=>{
             //         let div = document.createElement("div")
-
             //         div.innerHTML =""
-            //         div.innerHTML=`<h1>${ele.name}</h1>
-            //                         <img src="${ele.url}" alt="">`
-
+            //         div.innerHTML = `<h1>${ele.name}</h1>
+            //                         <img src="${ele.url}" alt="">` 
             //         container.appendChild(div)
+            //     })     
             // })
-            // .sort((a,b)=>a.name-name.b)
-
-
             } catch (error) {
             console.log(error)
+        }finally{
+
         }
     
     

@@ -25,16 +25,12 @@
             let fil= data.filter((ele)=>ele.userId == 1)
             // console.log(fil)
             div.innerHTML =""
-            fil.forEach((ele)=>{
-               
+            fil.forEach((ele)=>{       
                 let prod = document.createElement("div")
-    
                 prod.innerHTML = `     <b>Title</b> ${ele.title} 
-    <p> userid: ${ele.userId} and  id : ${ele.id} </p>
-    `
+    <p> userid: ${ele.userId} and  id : ${ele.id} </p> `
                 div.appendChild(prod)
-            })
-            
+            })    
         }
         catch(err){
             console.log(err)
