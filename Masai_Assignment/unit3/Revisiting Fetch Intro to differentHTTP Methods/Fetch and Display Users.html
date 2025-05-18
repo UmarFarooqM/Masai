@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+    <button onclick="fetchnames()">display</button>
+   
+    <ul id="ull"   ></ul>
+   
+</body>
+</html>
+
+<script>
+
+    async function fetchnames(){
+
+        try{
+            let res= await fetch("https://jsonplaceholder.typicode.com/users")
+            let data = await res.json()
+
+            console.log(data)
+          
+            data.forEach((ele,ind)=>{
+                let li = document.createElement("button")
+                li.innerHTML=""
+                li.innerHTML =` name: ${ele.name} `
+                let ul = document.getElementById("ull")
+                li.addEventListener('click', ()=>{
+                    alert(ele.email)
+                })
+                ul.appendChild(li)
+            })
+   
+
+            
+            
+           
+          
+
+        }
+        catch(err){
+            console.log(err)
+        }
+        
+    }
+
+</script>
