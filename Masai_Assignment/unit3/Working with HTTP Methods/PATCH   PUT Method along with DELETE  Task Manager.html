@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="dropdown">
+        <option value="all">all</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="books">Books</option>
+    </select>
+    <button id="btn" onclick="fetchproducts()">submit</button>
+    <input type="number" placeholder="enter min value">
+    <input type="number" placeholder="enter max value">
+
+    <div id="container"></div>
+    
+</body>
+</html>
+
+<script>
+    async function fetchproducts() {
+    let  res = await fetch('https://682f23c6746f8ca4a48004bc.mockapi.io/products/products');
+    let data = await res.json()
+    // console.log(data)
+    display(data)
+    }
+    function display(data){
+        let products = [...data]
+        // console.log(products)
+        let dropdown = document.getElementById("dropdown").value;
+        // console.log(dropdown)
+       let filt= products.filter((ele)=> {if(dropdown=="all" ){
+        return products 
+       } else{
+         return ele.category == dropdown
+       }})
+
+
+        console.log(filt)
+        filt.forEach((ele)=>{
+            let div = document.createElement("div");
+            div.innerHTML=""
+            let container = document.getElementById("container");
+            container.innerHTML=""
+            div.innerHTML=`
+            <img src="${ele.image}" alt="image">
+    <p>Name: ${ele.name}</p>
+    <p>Price : ${ele.price}</p>
+           
+    `
+     container.appendChild(div)
+    })
+       
+    }
+    fetchproducts()
+</script>
