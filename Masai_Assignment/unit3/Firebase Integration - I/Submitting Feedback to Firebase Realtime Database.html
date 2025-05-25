@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+   
+        <input type="text"  id="username"placeholder="username">
+        <input type="email" id = "message" placeholder="message">
+        <button onclick="forming()"> Submit</button>
+</body>
+</html>
+<script>
+    async function forming(){
+        var forms ={
+        name: document.getElementById("username").value,
+      email: document.getElementById("message").value,
+            }
+      let res=  await fetch('https://fir-ce3e4-default-rtdb.asia-southeast1.firebasedatabase.app/users.json',{
+            method : "POST",
+            headers : {"Content-Type" : "application/json"},
+            body : JSON.stringify(forms)
+        })
+        let data = await res.json()
+        console.log(data)
+    }
+   
+</script>

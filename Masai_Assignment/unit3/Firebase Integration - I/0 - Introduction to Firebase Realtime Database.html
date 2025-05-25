@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+<div id="container">
+    
+</div>
+
+</body>
+</html>
+
+<script>
+
+    async function form(){
+        let res = await fetch('https://fir-ce3e4-default-rtdb.asia-southeast1.firebasedatabase.app/users.json');
+
+        let  users = await res.json()
+        // let users = await [...data]
+        let Used = Object.entries(users).map(([id,users])=>({id,...users}))
+
+        console.log(Used)
+        
+        let cont= document.getElementById("container")
+        cont.innerHTML=""
+        
+        Used.forEach((ele)=>{
+            let div = document.createElement('div')
+            div.innerHTML = ""
+            div.innerHTML=` <table margin=1>
+  <caption>
+    Table of users
+  </caption>
+  <thead >
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Names</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>${ele.email}</td>
+      <td>${ele.name}</td>
+    </tr>
+  </tbody>
+</table>
+            `
+        cont.appendChild(div)
+        })
+
+
+    }
+    form()
+</script>
