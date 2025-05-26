@@ -28,10 +28,37 @@
         body{
             height: 200 vh;
         }
+        select{
+            margin: 20px;
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
     
+        <input type="text" placeholder="search by name or grade">
+        <select name="" id="">
+            <!-- <option value=""></option> -->
+            <option value="9th">grade 9</option>
+            <option value="10th"> grade 10</option>
+            <option value="11th">grade 11</option>
+            <option value="12th">grade 12</option>
+        </select>
+
+        <select name="" id="">
+            <!-- <option value=""></option> -->
+            <option value="A">section A</option>
+            <option value="B"> section B</option>
+            <option value="C">section C</option>
+            <option value="D">section D</option>
+        </select>
+        <select name="" id="">
+            <!-- <option value=""></option> -->
+            <option value="">score (ascending order)</option>
+            <option value="">score (descending order)</option>
+        </select>
+
+
     <button id="btn" onclick="displaystudents()"> display student info</button>
     <div id="list">
 
