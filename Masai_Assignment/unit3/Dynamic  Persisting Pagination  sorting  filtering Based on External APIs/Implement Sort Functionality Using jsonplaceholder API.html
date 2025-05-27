@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+<script>
+
+    const products = [
+  { name: 'Laptop', price: 1000 },
+  { name: 'Phone', price: 500 },
+  { name: 'Tablet', price: 300 },
+  { name: 'Monitor', price: 150 }
+];
+
+// DOM Elements
+const productList = document.getElementById('productList');
+const sortOptions = document.getElementById('sortOptions');
+
+// Function to display products
+function displayProducts(products) {
+  productList.innerHTML = ''; // Clear the list
+  products.forEach(product => {
+    const li = document.createElement('li');
+    li.textContent = `${product.name} - $${product.price}`;
+    productList.appendChild(li);
+  });
+}
+
+// Function to sort products based on selected option
+function sortProducts(option) {
+  let sortedProducts;
+
+  switch (option) {
+    case 'priceAsc':
+      sortedProducts = products.sort((a, b) => a.price - b.price);
+      break;
+    case 'priceDesc':
+      sortedProducts = products.sort((a, b) => b.price - a.price);
+      break;
+    case 'nameAsc':
+      sortedProducts = products.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case 'nameDesc':
+      sortedProducts = products.sort((a, b) => b.name.localeCompare(a.name));
+      break;
+    default:
+      sortedProducts = products;
+  }
+
+  displayProducts(sortedProducts);
+}
+
+// Initial display of products
+displayProducts(products);
+
+// Event listener for sorting options
+sortOptions.addEventListener('change', (event) => {
+  sortProducts(event.target.value);
+});
+
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Load More Example</title>
+</head>
+<body>
+
+  <h1>Load More Content</h1>
+  <ul id="dynamicItemList"></ul>
+  <button id="loadMoreButton">Load More</button>
+
+  <!-- <script src="load-more.js"></script> -->
+</body>
+</html>
+
+<script>
+const items = [
+  'Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5',
+  'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10',
+  'Item 11', 'Item 12', 'Item 13', 'Item 14', 'Item 15'
+];
+
+let itemsPerLoad = 5;
+let itemsLoaded = 0;
+
+// DOM Elements
+const dynamicItemList = document.getElementById('dynamicItemList');
+const loadMoreButton = document.getElementById('loadMoreButton');
+
+// Function to load more items
+function loadMoreItems() {
+  // Calculate the next set of items to load
+  const nextItems = items.slice(itemsLoaded, itemsLoaded + itemsPerLoad);
+
+  // Append the new items to the list
+  nextItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    dynamicItemList.appendChild(li);
+  });
+
+  // Update the number of items loaded
+  itemsLoaded += itemsPerLoad;
+
+  // Disable the button if all items are loaded
+  if (itemsLoaded >= items.length) {
+    loadMoreButton.disabled = true;
+    loadMoreButton.textContent = 'All items loaded';
+  }
+}
+
+// Initial load of items
+loadMoreItems();
+
+// Event listener for the "Load More" button
+loadMoreButton.addEventListener('click', loadMoreItems);
+
+
+</script>
