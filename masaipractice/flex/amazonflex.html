@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flex Layout</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    #box {
+      display: flex;
+      justify-content: space-between;
+      background-color: lightblue;
+      padding: 20px;
+      
+      /* gap :20px; */
+    }
+
+    #box > div {
+      width: 48%;
+      background-color: white;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .items > div {
+      width: 48%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .items img {
+      width: 100%;
+    }
+
+    h1 {
+        /* justify-content: center; */
+        /* justify-items: center; */
+        /* align-items: center; */
+      margin: 20px 100px 10px;
+    }
+
+    .footer-link {
+      margin-top: auto;
+      color: blue;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="box">
+
+    <!-- Home Section -->
+    <div id="home">
+      <h1>Revamp your home in style</h1>
+      
+      <div class="items">
+        <div>
+          <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG20/Home/2024/Gateway/BTFGW/PCQC/New/1x/final/186x116_Home_furnishings_2._SY116_CB555624324_.jpg" alt="">
+          <p>Cushion covers</p>
+        </div>
+        <div>
+          <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG20/Home/2024/Gateway/BTFGW/PCQC/New/1x/final/186x116_Home_decor_1._SY116_CB555624324_.jpg" alt="">
+          <p>Vases</p>
+        </div>
+        <div>
+          <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG20/Home/2024/Gateway/BTFGW/PCQC/New/1x/final/186x116_Home_storage_1._SY116_CB555624324_.jpg" alt="">
+          <p>Home storage</p>
+        </div>
+        <div>
+          <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG20/Home/2024/Gateway/BTFGW/PCQC/New/1x/final/186x116_Home_lighting_2._SY116_CB555624324_.jpg" alt="">
+          <p>Light solutions</p>
+        </div>
+      </div>
+
+      <a href="#" class="footer-link">Explore all</a>
+    </div>
+
+    <!-- Headphones Section -->
+    <div id="headphones">
+      <h1>Headphones</h1>
+      
+      <div class="items">
+        <div>
+          <img src="https://via.placeholder.com/150" alt="">
+          <p>Boat</p>
+        </div>
+        <div>
+          <img src="https://via.placeholder.com/150" alt="">
+          <p>Noise</p>
+        </div>
+        <div>
+          <img src="https://via.placeholder.com/150" alt="">
+          <p>JBL</p>
+        </div>
+        <div>
+          <img src="https://via.placeholder.com/150" alt="">
+          <p>Zebronics</p>
+        </div>
+      </div>
+
+      <a href="#" class="footer-link">See all offers</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

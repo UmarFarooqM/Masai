@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <style>
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="text" id="input" placeholder="Type your task">
+  <button id="bt">Add Task</button>
+  <ul id="ull"></ul>
+
+  <script>
+    const btn = document.getElementById("bt");
+
+    btn.addEventListener('click', () => {
+      const inputField = document.getElementById("input");
+      const inputValue = inputField.value.trim();
+
+      // Do not allow empty input
+      if (inputValue === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      const ul = document.getElementById("ull");
+      const li = document.createElement("li");
+      li.innerText = inputValue;
+
+      // Create Complete button
+      const completeBtn = document.createElement("button");
+      completeBtn.innerText = "Complete";
+      completeBtn.addEventListener("click", () => {
+        li.classList.toggle("completed");
+      });
+
+      // Append button and list item
+      li.appendChild(completeBtn);
+      ul.appendChild(li);
+
+      // Clear input after adding
+      inputField.value = "";
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#box{
+            padding: 10%;
+            margin: auto;
+            /* border :2px solid black; */
+            height: 50vh;
+            width: 80%;
+            display: grid;
+            position: absolute;
+            grid-auto-rows: 100px;
+            gap:  50px 50px;
+            grid-template-rows: repeat(2,1fr);
+            grid-template-columns: repeat(2, 1fr);
+        }
+        div#box>div{
+           
+            padding: 50%;
+            height: 50px;
+            border: 2px solid;
+        }
+        
+    </style>
+</head>
+<body>
+   <div id="box">
+    <div><img src="" alt=""></div>
+    <div><img src="" alt=""></div>
+    <div><img src="" alt=""></div>
+    <div><img src="" alt=""></div>
+    <div><img src="" alt=""></div>
+    <div><img src="" alt=""></div>
+    <div><img src="" alt=""></div>
+    <div><img src="" alt=""></div>
+   </div>
+    
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Starbucks Clone</title>
+  
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+}
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e3932;
+  color: white;
+  padding: 10px 20px;
+}
+.main-nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+.user input {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: none;
+}
+.store-status {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1e3932;
+  color: white;
+  padding: 10px 20px;
+}
+.store-status button {
+  margin-left: 10px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+}
+.store-status .active {
+  background-color: white;
+  color: #1e3932;
+  font-weight: bold;
+}
+.category-bar {
+  display: flex;
+  overflow-x: auto;
+  background-color: #f0ede7;
+  padding: 10px 20px;
+}
+.category-bar a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #555;
+}
+.category-bar .active {
+  border-bottom: 2px solid green;
+  color: green;
+}
+.bestseller-section {
+  padding: 20px;
+}
+.cards {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+.card {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+/* 
+next one */
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+}
+
+.bestseller h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.bestseller p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.product-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 15px;
+}
+
+.product-info h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+  color: #1e3932;
+}
+
+.product-info .sub {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.product-info .desc {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #e5e5e5;
+  color: #555;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+  </style>
+
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">Starbucks</div>
+    <nav class="main-nav">
+      <a href="#">Home</a>
+      <a href="#">Gift</a>
+      <a href="#">Order</a>
+      <a href="#">Pay</a>
+      <a href="#">Store</a>
+    </nav>
+    <div class="user">
+      <input type="text" placeholder="Looking for something specific?" />
+      <span>👤</span>
+    </div>
+  </header>
+
+  <section class="store-status">
+    <p>No Store Selected</p>
+    <button>Dine-In</button>
+    <button class="active">Takeaway</button>
+  </section>
+
+  <section class="category-bar">
+    <a href="#" class="active">Bestseller</a>
+    <a href="#">Drinks</a>
+    <a href="#">Food</a>
+    <a href="#">Merchandise</a>
+    <a href="#">Coffee At Home</a>
+    <a href="#">Ready to Eat</a>
+    <a href="#">Mother's Day Special</a>
+  </section>
+
+  <section class="bestseller-section">
+    <h2>Bestseller</h2>
+    <p>Everyone's favorite Starbucks put together in a specially curated collection.</p>
+    <div class="cards">
+      <div class="card">
+        <img src="https://starbucksstatic.cognizantorderserv.com/Items/Small/100501.jpg" alt="Java Chip" />
+        <h3>Java Chip Frappuccino</h3>
+        <p>Tall (345ml) - 392 kcal</p>
+      </div>
+      <div class="card">
+        <img src="https://starbucksstatic.cognizantorderserv.com/Items/Small/103515.jpg" alt="Double Chocolate Chip" />
+        <h3>Double Chocolate Chip</h3>
+        <p>Tall (345ml) - 415 kcal</p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section class="bestseller">
+    <h2>Bestseller</h2>
+    <p>Everyone's favorite Starbucks put together in a specially curated collection.</p>
+    <div class="product-list">
+      <!-- Card 1 -->
+      <div class="product-card">
+        <img src="https://starbucksstatic.cognizantorderserv.com/Items/Small/100501.jpg" alt="Java Chip Frappuccino" />
+        <div class="product-info">
+          <h3>Java Chip Frappuccino</h3>
+          <p class="sub">TALL(345 ml) · 392 kcal</p>
+          <p class="desc">Mocha sauce and Frappuccino® chips blended with with Frappu...</p>
+          <div class="bottom">
+            <span class="price">₹ 441.00</span>
+            <button>Add Item</button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="product-card">
+        <img src="https://i.imgur.com/VcL6GVm.png" alt="Double Chocolate Chip" />
+        <div class="product-info">
+          <h3>Double Chocolate Chip</h3>
+          <p class="sub">TALL(345 ml) · 415 kcal</p>
+          <p class="desc">Rich mocha-flavored sauce meets up with chocolaty chips, mil...</p>
+          <div class="bottom">
+            <span class="price">₹ 462.00</span>
+            <button>Add Item</button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="product-card">
+        <img src="https://i.imgur.com/ZKpT4XI.png" alt="Picco Cappuccino" />
+        <div class="product-info">
+          <h3>Picco Cappuccino</h3>
+          <p class="sub">PICCO(180 ml) · 95 kcal</p>
+          <p class="desc">Dark, rich in flavour espresso lies in wait under a smoothed...</p>
+          <div class="bottom">
+            <span class="price">₹ 194.25</span>
+            <button>Add Item</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html> -->

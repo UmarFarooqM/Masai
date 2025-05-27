@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<textarea name="notes" id="notes"  rows="4" cols="50"></textarea>
+    <button id="btn" onclick="loadnotes()">load Notes</button>
+    <div id="box"></div>
+
+    <button id='clear' onclick="clearall()"> clear Notes</button>
+</body>
+</html>
+
+<script>
+
+    function loadnotes(){
+    let textip = document.getElementById("notes").value 
+    let btn =  document.getElementById("btn")
+    let notes = JSON.parse(localStorage.getItem('notes')) || [] ;
+    notes.push(textip)
+        localStorage.setItem('notes', JSON.stringify(notes))
+        displaynotes()
+    }
+    function displaynotes(){
+        let notes =  JSON.parse(localStorage.getItem('notes'));
+        console.log(notes)
+        let box=document.getElementById("box")
+        box.innerHTML=""
+        notes.forEach((ele)=>{
+            let para = document.createElement('p')
+            para.innerText=""
+            para.innerText = ele
+            let div = document.createElement('div')
+            div.appendChild(para)
+            box.appendChild(div)
+
+        })
+    }
+        function clearall(){
+            localStorage.removeItem('notes')
+            displaynotes()
+        }
+        
+        displaynotes()
+     
+     
+</script>

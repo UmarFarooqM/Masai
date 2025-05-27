@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body">
+    
+
+    <select name="theme" id="sel" onchange="themes()">
+        <option value="lightblue" id="light"> light</option>
+        <option value="darkblue" id="dark"> Dark</option>
+        <option value="blue" id="blue"> Blue</option>
+    </select>
+    <p id="para"> this will change</p>
+</body>
+</html>
+
+<script>
+
+    function  themes(){
+
+        let sel = document.getElementById("sel").value 
+        
+        let themes=  JSON.parse(sessionStorage.getItem('themes')) || []
+
+        themes.push(sel)
+        sessionStorage.setItem('themes', JSON.stringify(themes))
+        let body = document.getElementById("body")
+        let div = document.createElement('p')
+        div.innerText =""
+        div.innerHTML = "this theme is added into sessionStorage "
+        let para = document.getElementById('para')
+        // para.innerText =div
+        para.appendChild(div)
+        
+        body.style.backgroundColor = sel
+        body.style.color = "red"
+    }
+</script>
