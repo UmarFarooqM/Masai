@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase User Management</title>
+  <style>
+    /* Basic styling for the user list and buttons */
+    #userList {
+      margin-top: 20px;
+    }
+    .user {
+      padding: 10px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    #paginationButtons button {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Firebase User Management</h1>
+
+  <!-- Search input -->
+  <input type="text" id="searchInput" placeholder="Search users by name" />
+  <button onclick="searchUsers()">Search</button>
+
+  <!-- User list -->
+  <div id="userList"></div>
+
+  <!-- Pagination controls -->
+  <div id="paginationButtons">
+    <button onclick="previousPage()">Previous</button>
+    <button onclick="nextPage()">Next</button>
+  </div>
+
+  <!-- <script src="app.js"></script> -->
+</body>
+</html>
+
+<script>
+
+   const URL = 'https://your-project-id.firebaseio.com/users.json';
+const userList = document.getElementById('userList');
+const searchInput = document.getElementById('searchInput');
+
+let itemsPerPage = 5;
+let currentPage = 1;
+let currentData = [];
+
+// Fetch and display users
+const fetchUsers = (page) => {
+  fetch(URL)
+    .then(response => response.json())
+    .then(data => {
+      currentData = Object.entries(data);
+      displayUsers(page);
+    })
+    .catch(error => console.error("Error fetching data:", error));
+};
+
+// Display users with pagination
+const displayUsers = (page) => {
+  userList.innerHTML = '';
+  const totalPages = Math.ceil(currentData.length / itemsPerPage);
+
+  if (page < 1) page = 1;
+  if (page > totalPages) page = totalPages;
+
+  const start = (page - 1) * itemsPerPage;
+  const usersToShow = currentData.slice(start, start + itemsPerPage);
+
+  usersToShow.forEach(([key, user]) => {
+    const div = document.createElement('div');
+    div.className = 'user';
+    div.innerHTML = `<strong>${user.name}</strong> (${user.email})`;
+    userList.appendChild(div);
+  });
+
+  currentPage = page;
+};
+
+// Search users
+const searchUsers = () => {
+  const searchTerm = searchInput.value.toLowerCase();
+  const filteredData = currentData.filter(([key, user]) =>
+    user.name.toLowerCase().includes(searchTerm)
+  );
+
+  if (filteredData.length > 0) {
+    currentData = filteredData;
+    displayUsers(1); // Display filtered results starting from page 1
+  } else {
+    userList.innerHTML = 'No users found.';
+  }
+};
+
+// Pagination controls
+const nextPage = () => {
+  if (currentPage * itemsPerPage < currentData.length) {
+    displayUsers(currentPage + 1);
+  }
+};
+
+const previousPage = () => {
+  if (currentPage > 1) {
+    displayUsers(currentPage - 1);
+  }
+};
+
+// Initial fetch
+fetchUsers(currentPage);
+ 
+    
+
+</script>
