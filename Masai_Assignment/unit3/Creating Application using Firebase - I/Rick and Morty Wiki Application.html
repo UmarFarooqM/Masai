@@ -36,21 +36,14 @@
     span{
         font-weight: bold;
     }
-    .dark{
-        background-color: #333;
-        color: white;
-    }
-    .light{
-        background-color: #fff;
-        color: black;
-    }
+    
 </style>
 <body>
     <select name="" id="select">
         <option value="dark">Dark</option>
-        <option value="light">Light</option>
+        <option value="white">Light</option>
     </select>
-    <button id="apply">Apply_Theme</button>
+    <button id="apply" onclick="themechange()">Apply_Theme</button>
     <div id="container"></div>
     
     
@@ -65,8 +58,19 @@
         displaycharacter(data.results)
         
     }
-    
+    function themechange(){
+        let sel = document.getElementById("select").value;
+        if(sel=="dark"){
+            document.body.style.backgroundColor="black";
+            document.body.style.color="white";
+        }
+        else{
+             document.body.style.backgroundColor="white";
+            document.body.style.color="black";
+        }
+    }
 
+    
     async function displaycharacter(char){
         let characterDiv=document.getElementById("container")
         characterDiv.innerHTML=""
