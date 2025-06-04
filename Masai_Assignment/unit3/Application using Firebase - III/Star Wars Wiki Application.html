@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars</title>
+</head>
+<style>
+    body{
+        background-color: aliceblue;
+        width: 80%;;
+    }
+   
+    #container{
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        width: 80%;
+        gap: 15px;
+        margin: auto;
+        margin-top: 100px;
+        margin-left: 250px;
+    }
+    #container>div{
+        text-align: center;
+        margin: 20px;
+        padding: 15px;
+        background-color: #f4f4f4;
+        box-shadow: rgba(151, 13, 13, 0.15) 1.95px 1.95px 2.6px;
+    }
+    
+    img{
+        width: 250px;
+        height: 250px;
+
+    }
+    span{
+        font-weight: bold;
+    }
+    
+</style>
+<body>
+     <select name="" id="select">
+        <option value="dark">Dark</option>
+        <option value="white">Light</option>
+    </select>
+    <button id="apply" onclick="themechange()">Apply_Theme</button>
+    <div id="container"></div>
+    
+    
+</body>
+</html>
+<script>
+    let select=document.getElementById("select").value;
+    let apply=document.getElementById("apply").value;
+    async function fetchcharacter(){
+        let res=await fetch("https://akabab.github.io/starwars-api/api/all.json")
+        let data=await res.json()
+        console.log(data)
+        displaycharacter(data)
+        
+    }
+    
+     function themechange(){
+        let sel = document.getElementById("select").value;
+        if(sel=="dark"){
+            document.body.style.backgroundColor="black";
+            document.body.style.color="white";
+        }
+        else{
+             document.body.style.backgroundColor="white";
+            document.body.style.color="black";
+        }
+    }
+
+    async function displaycharacter(char){
+        let characterDiv=document.getElementById("container")
+        characterDiv.innerHTML=""
+        char.forEach((char)=>{
+            let childDiv=document.createElement("div")
+            childDiv.className="child-div"
+            childDiv.innerHTML=`<img src="${char.image}" alt="">
+                                <p><span>Name: </span>${char.name}</p>
+                                <p><span>Species: </span>${char.gender}</p>
+                                <p><span>Status: </span>${char.species}</p>`
+                                characterDiv.append(childDiv)
+        })
+    }
+    fetchcharacter()
+    
+    
+</script>
