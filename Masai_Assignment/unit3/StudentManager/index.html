@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        #list{
+            display: grid;
+            grid-template-columns: repeat(2,200px);
+            gap: 20px;
+            justify-content: center;
+        }
+        .eachstudent{
+            background-color: #fff;
+            padding: 15px;
+        }
+        button{
+            margin: 20px;
+            padding: 8px;
+        }
+        body{
+            height: 200 vh;
+        }
+        select{
+            margin: 20px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+        <input type="text" placeholder="search by name or grade">
+        <select name="" id="">
+            <!-- <option value=""></option> -->
+            <option value="9th">grade 9</option>
+            <option value="10th"> grade 10</option>
+            <option value="11th">grade 11</option>
+            <option value="12th">grade 12</option>
+        </select>
+
+        <select name="" id="">
+            <!-- <option value=""></option> -->
+            <option value="A">section A</option>
+            <option value="B"> section B</option>
+            <option value="C">section C</option>
+            <option value="D">section D</option>
+        </select>
+        <select name="" id="">
+            <!-- <option value=""></option> -->
+            <option value="">score (ascending order)</option>
+            <option value="">score (descending order)</option>
+        </select>
+
+
+    <button id="btn" onclick="displaystudents()"> display student info</button>
+    <div id="list">
+
+    </div>
+   
+</body>
+</html>
+
+<script>    
+
+
+    async function fetchstudents(){
+        let res = await fetch('https://studentmanager-b6e4e-default-rtdb.asia-southeast1.firebasedatabase.app/students.json')
+        let data = await res.json()
+        // console.log(data)
+        if(!data) return []
+
+        return Object.entries(data).map(([id,student])=> ({id,...student}))
+
+    }
+
+    async function displaystudents() {
+            let students = await fetchstudents()
+
+            let studentslist = document.getElementById("list")
+
+            studentslist.innerHTML=""
+            if(students.length==0){
+                studentslist.innerHTML `<p> no students found</p>`
+            }
+            students.forEach((ele)=>{
+                let stud = document.createElement("div")
+                stud.innerHTML=""
+                stud.className = "eachstudent"
+                stud.innerHTML=`
+                    <h3> Student Name: ${ele.name}</h3>
+                    <p> Age : ${ele.age}</p>
+                    <p>Grade: ${ele.grade}</p>
+                    <p>Section : ${ele.section}</p>
+                    <p>Score : ${ele.score}</p>
+                     <button class="edit-btn" onclick=edit("${ele.name}, ${ele.age} ${ele.grade}, ${ele.score}, ${ele.section}")> edit student form</button>
+    <button class="delete-btn"  onclick="deletestd(${ele.id})"> delete student form</button>
+                `
+                studentslist.appendChild(stud)
+            })
+
+    }
+    async function deletestd(stdId){
+        await fetch('https://studentmanager-b6e4e-default-rtdb.asia-southeast1.firebasedatabase.app/students/${students.id}.json',{
+            method : "DELETE",
+
+        })
+        fetchstudents()
+    }
+    // delete()
+    fetchstudents()
+
+</script>
