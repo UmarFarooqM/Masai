@@ -1,0 +1,13 @@
+{
+  "users": {
+    "user1": {
+      "email": "umarmasai@gmail.com",
+      "password": "123"
+    },
+    "user2": {
+      "email": "farooq@gmail.com",
+      "password": "456"
+    }
+  }
+}
+
