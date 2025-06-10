@@ -36,12 +36,35 @@
     span{
         font-weight: bold;
     }
+    .child-div{
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    #dis-btn{
+        padding: 10px;
+        display:block;
+        margin: 20px;
+        background-color: rgb(151, 145, 206);
+    }
     
 </style>
 <body >
     
 <button id="dis-btn">Display </button>
    
+<select name="" id="status-btn" onchange=filter()>
+    <option value="all">All</option>
+    <option value="Alive">Alive</option>
+    <option value="Dead">Dead</option>
+    <option value="unknown">Unknown</option>
+</select>
+
+<select name="" id="species" onchange=filter()>
+    <option value="all">All</option>
+    <option value="Human">Alive</option>
+    <option value="Alien">Dead</option>
+    <option value="Robot">Unknown</option>
+</select>
+
     <div id="container"></div>
 
     
@@ -60,8 +83,10 @@
     document.getElementById("dis-btn").addEventListener('click',async()=>{
         let char = await fetchcharacter()
         let characterDiv=document.getElementById("container")
+        // console.log(char.status)
         characterDiv.innerHTML=""
         char.forEach((char)=>{
+            console.log(char.status)
             let childDiv=document.createElement("div")
             childDiv.className="child-div"
             childDiv.innerHTML=`<img src="${char.image}" alt="">
@@ -74,6 +99,48 @@
         })
 
     })
+
+
+    async function filter(){
+        let char = await fetchcharacter();
+        // console.log(char)
+        let sel = document.getElementById('status-btn').value
+        let spe = document.getElementById("species").value;
+    let fil=   char.filter((ele)=> {
+        return (
+            (sel=="all" ||  sel==ele.status)
+            (spe=="all" || spe== ele.Species)
+        )
+       })
+        
+      display(fil)
+
+    }
+
+    async function display(fill){
+        let characterDiv=document.getElementById("container")
+        // console.log(char.status)
+        characterDiv.innerHTML=""
+        char.forEach((char)=>{
+            console.log(char.status)
+            let childDiv=document.createElement("div")
+            childDiv.className="child-div"
+            childDiv.innerHTML=`<img src="${char.image}" alt="">
+                                <p><span>Name: </span>${char.name}</p>
+                                <p><span>Species: </span>${char.species}</p>
+                                <p><span>Status: </span>${char.status}</p>
+                                <p><span>Location: </span>${char.location.name}</p>
+                                `
+                                characterDiv.append(childDiv)
+        })
+        filter()
+    }
+
+    
+   
+ filter()
+
+    
    
  
     

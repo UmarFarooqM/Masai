@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debouncing & Throatling</title>
+</head>
+<body>
+  <div class="container">
+    <div class="image">
+      <img src="https://img.freepik.com/premium-photo/cartoon-character-with-gun-pointing-side_1254967-36426.jpg" alt="Gun Man">
+      <button>Fire</button>
+      <div class="box">
+        <h1>Normal Count: <span class="normal">0</span></h1>
+        <h1>Throttle Count: <span class="throttle">0</span></h1>
+        <h1>Debounce Count: <span class="debounce">0</span></h1>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  let count = 0;
+  let throttleCount = 0;
+  let debounceCount = 0;
+document.querySelector('button').addEventListener('click', ()=>{
+  normalCountFn();
+  throttleCountFn();
+  debounceCountFn();
+});
+//normalCountFn
+function normalCountFn(){
+  count += 1;
+  document.querySelector('.normal').textContent = count;
+  console.log(count);
+}
+//Throtlling
+let flag = true;
+function throttleCountFn(){
+  if(flag){
+    throttleCount += 1;
+    document.querySelector('.throttle').textContent = throttleCount;
+    flag = false;
+    setTimeout(()=>{
+      flag = true
+    },2000)
+  }
+}
+//Throttling => It Nullify all clicks in between a specific time
+//Debouning => Runs once we stop clicking
+//Debouning
+let x;
+function debounceCountFn(){
+  clearTimeout(x)
+ x = setTimeout(()=>{
+    debounceCount += 1;
+    document.querySelector('.debounce').textContent = debounceCount;
+  },2000)
+}
+</script>
+</html>

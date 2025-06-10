@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sort, Filter & Serach</title>
+</head>
+<body>
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search by Name">
+    <select  id="filterSelect">
+      <option value="All">All species</option>
+      <option value="Human">Human</option>
+      <option value="Wookiee">Wookiee</option>
+      <option value="Droid">Droid</option>
+      <option value="Yoda's species">Yoda's species</option>
+    </select>
+    <button onclick="sortAsc()">Sort by Height ↑</button>
+    <button onclick="sortDesc()">Sort by Height ↓</button>
+  </div>
+  <div id="container"></div>
+</body>
+<script>
+  let data = [
+  { name: "Luke", species: "Human", height: 172 },
+  { name: "Yoda", species: "Yoda's species", height: 66 },
+  { name: "Darth Vader", species: "Human", height: 202 },
+  { name: "Chewbacca", species: "Wookiee", height: 228 },
+  { name: "Leia Organa", species: "Human", height: 150 },
+  { name: "Han Solo", species: "Human", height: 180 },
+  { name: "R2-D2", species: "Droid", height: 96 },
+  { name: "C-3PO", species: "Droid", height: 167 },
+  { name: "Obi-Wan Kenobi", species: "Human", height: 182 },
+  { name: "Rey", species: "Human", height: 170 }
+]
+let displayData = [...data];
+//fetching 
+function render(dataToRender){
+  let container = document.getElementById('container');
+  container.innerHTML = "";
+  dataToRender.forEach(item => {
+    let div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+    <strong>${item.name}</strong>
+    <br> Species: ${item.species}
+    <br> Height: ${item.height}
+    `
+    container.appendChild(div);
+  });
+};
+//search
+function handleSearch(){
+  let query = document.getElementById('searchInput').value.toLowerCase();
+  let filtered = data.filter(d => d.name.toLowerCase().includes(query));
+  //filter
+  let selected = document.getElementById('filterSelect').value; //Human
+  if(selected !== 'All'){
+    filtered = data.filter(d => d.species === selected);
+  }
+  displayData = filtered;
+  render(displayData);
+}
+//Filter
+function handleFilter(){
+  handleSearch(displayData);
+}
+//Ascending
+function sortAsc(){
+  displayData.sort((a, b)=> a.height - b.height);
+  render(displayData)
+}
+//Desc
+function sortDesc(){
+  displayData.sort((a, b)=> b.height - a.height);
+  render(displayData)
+}
+document.getElementById('searchInput').addEventListener('input', handleSearch);
+document.getElementById('filterSelect').addEventListener('change', handleFilter);
+render(displayData)
+</script>
+</html>
